@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TuPrecio.Models;
+using TuPrecio.Models.Contexts;
 
 namespace TuPrecio.Controllers
 {
@@ -10,6 +12,21 @@ namespace TuPrecio.Controllers
     {
         public ActionResult Index()
         {
+            using(var db = new TuPrecioDbContext())
+            {
+                var location = new Location
+                {
+                    Id = 1,
+                    Name = "Súper Lama",
+                    Address = "Av. Charles de Gaulle, Esq. Aut. San Isidro",
+                    Latitude = "18.488745",
+                    Longitude = "-69.8259379"
+                };
+
+                db.Locations.Add(location);
+                db.SaveChanges();
+            }
+
             return View();
         }
 

@@ -11,6 +11,7 @@ namespace TuPrecio.Controllers
         // GET: Search
         public ActionResult Index(string criteria)
         {
+            
             return View();
         }
     }
