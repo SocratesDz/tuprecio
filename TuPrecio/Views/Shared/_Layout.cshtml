@@ -1,44 +1,48 @@
 ﻿<!DOCTYPE html>
-<html>
+<html class="no-js" lang="es">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
+    <title>@ViewBag.Title | TuPrecio.com</title>
+    @Styles.Render("~/Content/css/foundation")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("TuPrecio.com", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+    <div class="top-bar">
+        <div class="row">
+            <div class="top-bar-left">
+                <ul class="dropdown menu" data-dropdown-menu>
+                    <li class="menu-text"><a href="@Url.Action("Index", "Home")"></a>TuPrecio.com</li>
+                    <li><a href="@Url.Action("About", "Home")">About</a></li>
                 </ul>
-                @*@Html.Partial("_LoginPartial")*@
+            </div>
+            <div class="top-bar-right">
+                <form action="@Url.Action("Index", "Search")">
+                    <ul class="menu">
+                        <li><input type="search" name="criteria" placeholder="Search"></li>
+                        <li><button type="submit" class="button">Search</button></li>
+                    </ul>
+                </form>
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+    <br />
 
+    @RenderBody()
+
+    <div class="row column">
+        <hr>
+        <ul class="menu">
+            <li>TuPrecio.com</li>
+            <li><a href="@Url.Action("About", "Home")">About</a></li>
+            <li class="float-right">Copyright @DateTime.Now.Year</li>
+        </ul>
+    </div>
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    @Scripts.Render("~/Scripts/foundation")
+    <script>
+      $(document).foundation();
+    </script>
 </body>
 </html>

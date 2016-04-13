@@ -2,28 +2,31 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>TuPrecio.com</h1>
-</div>
-
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    <div class="medium-6 columns">
+        <img class="thumbnail" src="http://placehold.it/650x350">
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    <div class="medium-6 large-5 columns">
+        <h3>TuPrecio.com</h3>
+        <p>Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in.</p>
+        @using (Html.BeginForm("Index", "Search", FormMethod.Get))
+        {
+            <div class="row">
+                <div class="small-3 columns">
+                    <label for="middle-label" class="middle">Busca un artículo:</label>
+                </div>
+                <div class="small-9 columns">
+
+                    @Html.TextBox("criteria", null, new { placeholder = "Buscar" })
+
+                </div>
+            </div>
+            <button type="submit" class="button large expanded">Buscar</button>
+        }
+        <div class="small secondary expanded button-group">
+            <a class="button">Facebook</a>
+            <a class="button">Twitter</a>
+            <a class="button">Yo</a>
+        </div>
     </div>
 </div>

@@ -26,6 +26,12 @@ namespace TuPrecio
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/css/foundation").Include(
+                    "~/Content/foundation.min.css"));
+
+            bundles.Add(new ScriptBundle("~/Scripts/foundation").Include(
+                    "~/Scripts/foundation.js"));
         }
     }
 }
