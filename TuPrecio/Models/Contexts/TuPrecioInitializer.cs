@@ -6,7 +6,7 @@ using System.Web;
 
 namespace TuPrecio.Models.Contexts
 {
-    public class TuPrecioInitializer : DropCreateDatabaseAlways<TuPrecioDbContext>
+    public class TuPrecioInitializer : CreateDatabaseIfNotExists<TuPrecioDbContext>
     {
         protected override void Seed(TuPrecioDbContext context)
         {

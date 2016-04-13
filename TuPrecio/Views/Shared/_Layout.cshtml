@@ -28,9 +28,9 @@
         </div>
     </div>
     <br />
-
-    @RenderBody()
-
+    <div class="row">
+        @RenderBody()
+    </div>
     <div class="row column">
         <hr>
         <ul class="menu">
@@ -42,7 +42,8 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/Scripts/foundation")
     <script>
-      $(document).foundation();
+        $(document).foundation();
     </script>
+    @RenderSection("scripts", required: false)
 </body>
 </html>
