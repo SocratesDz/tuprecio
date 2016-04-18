@@ -94,5 +94,21 @@ namespace TuPrecio.Controllers
                 return View();
             }
         }
+
+        [HttpGet]
+        public JsonResult LocationsQuery(string query)
+        {
+            if(Request.IsAjaxRequest())
+            {
+                using(var db = new TuPrecioDbContext())
+                {
+                    var locations = db.Locations.Where(l => l.Name.Contains(query)).ToList();
+                    var locObjs = locations
+                        .Select(x => new { Id = x.Id, Name = x.Name });
+                    return Json(locObjs, JsonRequestBehavior.AllowGet);
+                }
+            }
+            return Json(null, JsonRequestBehavior.AllowGet);
+        }
     }
 }

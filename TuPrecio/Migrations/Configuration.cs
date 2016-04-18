@@ -2,6 +2,7 @@ namespace TuPrecio.Migrations
 {
     using Models;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -37,37 +38,50 @@ namespace TuPrecio.Migrations
                 Latitude = "18.488745",
                 Longitude = "-69.8259379"
             };
-            context.Locations.AddOrUpdate(l => l.Name, location);
-            context.SaveChanges();
+            
 
             var unitType = new UnitType {
                 Name = "unidad"
             };
-            context.UnitTypes.AddOrUpdate(u => u.Name, unitType);
-            context.SaveChanges();
-
+            
             var currency = new Currency
             {
                 Name = "peso",
                 Code = "DOP",
                 Symbol = "$"
             };
-            context.Currencies.AddOrUpdate(c => c.Name, currency);
-            context.SaveChanges();
+            
+
+            var locationList = new List<Location>();
+            locationList.Add(location);
 
             var article1 = new Article
             {
                 Name = "Aceite de Soya Crisol (128 oz.)",
                 Price = 349.95M,
                 InsertDate = new DateTime(2016, 1, 18),
-                Location = context.Locations.FirstOrDefault(l => l.Name == "Súper Lama"),
-                Unit = context.UnitTypes.FirstOrDefault(u => u.Name == "unidad"),
-                Currency = context.Currencies.FirstOrDefault(u => u.Code == "DOP"),
+                Location = locationList,
+                Unit = unitType,
+                Currency = currency,
                 Comment = null
             };
 
+            
+            location.Articles = new List<Article>();
+            location.Articles.Add(article1);
+
+            context.UnitTypes.AddOrUpdate(u => u.Name, unitType);
+            context.SaveChanges();
+
+            context.Currencies.AddOrUpdate(c => c.Name, currency);
+            context.SaveChanges();
+
+            context.Locations.AddOrUpdate(l => l.Name, location);
+            context.SaveChanges();
+
             context.Articles.AddOrUpdate(a => a.Name, article1);
             context.SaveChanges();
+
         }
     }
 }

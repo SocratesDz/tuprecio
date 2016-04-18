@@ -13,7 +13,7 @@ namespace TuPrecio.Models
         public DateTime? InsertDate { get; set; }
         public String Comment { get; set; }
 
-        public virtual Location Location { get; set; }
+        public virtual List<Location> Location { get; set; }
         public virtual UnitType Unit { get; set; }
         public virtual Currency Currency { get; set; }
     }
