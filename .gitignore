@@ -243,3 +243,6 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+TuPrecio/Web.config
+TuPrecio.Tests/TuPrecio.Tests.csproj
+TuPrecio.Tests/App.config

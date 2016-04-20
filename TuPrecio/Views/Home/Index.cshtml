@@ -3,12 +3,44 @@
 }
 
 <div class="row">
-    <div class="medium-6 columns">
-        <img class="thumbnail" src="http://placehold.it/650x350">
+    <div class="small-12  medium-6 large-8 columns">
+        <div class="orbit" role="region" aria-label="TuPrecio.com, donde encuentras cualquier artículo" data-orbit data-options="animInFromLeft:fade-in; animInFromRight:fade-in; animOutToLeft:fade-out; animOutToRight:fade-out;">
+            <ul class="orbit-container">
+                <button class="orbit-previous"><span class="show-for-sr">Anterior</span>&#9664;&#xFE0E;</button>
+                <button class="orbit-next"><span class="show-for-sr">Siguiente</span>&#9654;&#xFE0E;</button>
+                <li class="is-active orbit-slide">
+                    <img class="orbit-image" src="~/Imgs/ropa.jpg" alt="ropa" />
+                    <figcaption class="orbit-caption">Cualquier tipo de vestimenta!</figcaption>
+                </li>
+                <li class="orbit-slide">
+                    <img class="orbit-image" src="~/Imgs/corripio.jpg" alt="Corripio" />
+                    <figcaption class="orbit-caption">Productos de empresas locales!</figcaption>
+                </li>
+                <li class="orbit-slide">
+                    <img class="orbit-image" src="~/Imgs/vehiculos.jpg" alt="Vehiculos" />
+                    <figcaption class="orbit-caption">Busca el precio del vehículo de tus sueños!</figcaption>
+                </li>
+            </ul>
+            <nav class="orbit-bullets">
+                <button class="is-active" data-slide="0"><span class="show-for-sr">Detalles</span><span class="show-for-sr">Seleccionado</span></button>
+                <button data-slide="1"><span class="show-for-sr">Detalles</span></button>
+                <button data-slide="2"><span class="show-for-sr">Detalles</span></button>
+            </nav>
+        </div>
     </div>
-    <div class="medium-6 large-5 columns">
+
+    <div class="small-12 medium-6 large-4 columns">
         <h3>TuPrecio.com</h3>
-        <p>Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in.</p>
+        <div class="warning callout">
+            <p>
+                Bienvenido a "TuPrecio.com". Aquí podrás encontrar el catálogo de precios de casi cualquier
+                producto en el país. Solo tienes que ingresar el nombre del producto que deseas y
+                darle a "Buscar".
+                <br>
+                <br />
+                <label>(Nota: Los precios estan supuestos a variaciones según el vendedor)</label>
+            </p>
+        </div>
         @using (Html.BeginForm("Index", "Search", FormMethod.Get))
         {
             <div class="row">
@@ -16,17 +48,15 @@
                     <label for="middle-label" class="middle">Busca un artículo:</label>
                 </div>
                 <div class="small-9 columns">
-
                     @Html.TextBox("criteria", null, new { placeholder = "Buscar" })
-
                 </div>
             </div>
             <button type="submit" class="button large expanded">Buscar</button>
         }
-        <div class="small secondary expanded button-group">
+        <div class="small expanded button-group">
             <a class="button">Facebook</a>
+            <a class="secondary button">Instagram</a>
             <a class="button">Twitter</a>
-            <a class="button">Yo</a>
         </div>
     </div>
 </div>
