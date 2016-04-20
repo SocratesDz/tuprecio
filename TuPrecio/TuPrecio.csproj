@@ -220,10 +220,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\TuPrecioLocalTesting.mdf" />
-    <Content Include="App_Data\TuPrecioLocalTesting_log.ldf">
-      <DependentUpon>TuPrecioLocalTesting.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\foundation-flex.css" />
@@ -242,8 +238,7 @@
     <Content Include="Scripts\bloodhound.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Properties\PublishProfiles\TuPrecio-smarter.pubxml" />
-    <None Include="Properties\PublishProfiles\tuprecio.pubxml" />
+    <None Include="Properties\PublishProfiles\tuprecio - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\foundation.js" />
@@ -329,7 +324,9 @@
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Article\Create.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

@@ -9,7 +9,7 @@ namespace TuPrecio.Models.Contexts
     public class TuPrecioDbContext : DbContext
     {
         public TuPrecioDbContext() 
-            : base("LocalDatabase")
+            : base("AzureDatabaseConnection")
         {
             Database.SetInitializer<TuPrecioDbContext>(null);
             Configuration.ProxyCreationEnabled = false;

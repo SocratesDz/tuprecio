@@ -37,13 +37,43 @@ namespace TuPrecio.Controllers
 
         // POST: Article/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(ArticleViewModel model)
         {
             try
             {
-                // TODO: Add insert logic here
+                if(ModelState.IsValid)
+                {
+                    using(var db = new TuPrecioDbContext())
+                    {
+                        var newArticle = new Article();
+                        newArticle.Comment = String.Empty;
+                        newArticle.Currency = db.Currencies.FirstOrDefault();
+                        newArticle.InsertDate = DateTime.Today;
+                        newArticle.Name = model.Name;
+                        newArticle.Price = Convert.ToDecimal(model.Price);
+                        newArticle.Unit = db.UnitTypes.FirstOrDefault();
 
-                return RedirectToAction("Index");
+                        var newLocation = db.Locations.Where(l => l.Name == model.BusinnesName).FirstOrDefault();
+                        if(newLocation == null)
+                        {
+                            newLocation = new Location();
+                            newLocation.Name = model.BusinnesName;
+                            newLocation.Latitude = model.Latitude;
+                            newLocation.Longitude = model.Longitude;
+                            newLocation.Address = model.Address;
+                            newLocation.Articles = new List<Article> { newArticle };
+                            db.Locations.Add(newLocation);
+                        }
+
+                        newArticle.Location = new List<Location> { newLocation };
+                        db.Articles.Add(newArticle);
+                        db.SaveChanges();
+                    }
+
+                    return RedirectToAction("Create", "Article");
+                }
+                
+                return View(model);
             }
             catch
             {
