@@ -44,8 +44,15 @@
         </div>
     </div>
     <div class="row">
-        <div class="medium-10 medium-text-center" style="margin: 0 auto;">
+        <div class="medium-10 columns medium-centered" style="margin: 0 auto;">
             <div id="map_canvas" style="width: 100%; height: 400px;"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="medium-6 columns medium-centered" style="margin-top: 10px;">
+            <label>Comentario
+            @Html.TextAreaFor(m => m.Comment, new { placeholder = "Algún comentario sobre el producto?" } )
+            </label>
         </div>
     </div>
     <div class="row">
@@ -111,7 +118,8 @@
     google.maps.event.addDomListener(window, "load", initMap);
 </script>
 
-<script>
+@* Tratando de implementar Typeahead.js *@
+@*<script>
     $(function () {
         var locations = new Bloodhound({
             datumTokenizer: function (datum) {
@@ -137,7 +145,7 @@
             source: locations
         });
     });
-</script>
+</script>*@
 
 }
 

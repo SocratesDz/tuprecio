@@ -46,14 +46,16 @@ namespace TuPrecio.Controllers
                     using(var db = new TuPrecioDbContext())
                     {
                         var newArticle = new Article();
-                        newArticle.Comment = String.Empty;
+                        newArticle.Comment = model.Comment;
                         newArticle.Currency = db.Currencies.FirstOrDefault();
                         newArticle.InsertDate = DateTime.Today;
                         newArticle.Name = model.Name;
                         newArticle.Price = Convert.ToDecimal(model.Price);
                         newArticle.Unit = db.UnitTypes.FirstOrDefault();
 
-                        var newLocation = db.Locations.Where(l => l.Name == model.BusinnesName).FirstOrDefault();
+                        var newLocation = db.Locations.Where(l => l.Name == model.BusinnesName 
+                                                                && l.Latitude == model.Latitude 
+                                                                && l.Longitude == l.Longitude).FirstOrDefault();
                         if(newLocation == null)
                         {
                             newLocation = new Location();

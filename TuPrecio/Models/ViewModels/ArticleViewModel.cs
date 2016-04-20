@@ -26,5 +26,7 @@ namespace TuPrecio.Models.ViewModels
         [Required]
         [Display(Name = "Nombre del negocio")]
         public string BusinnesName { get; set; }
+
+        public string Comment { get; set; } 
     }
 }
