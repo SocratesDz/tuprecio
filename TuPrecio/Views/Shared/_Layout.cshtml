@@ -6,22 +6,23 @@
     <title>@ViewBag.Title | TuPrecio.com</title>
     @Styles.Render("~/Content/css/foundation")
     @Scripts.Render("~/bundles/modernizr")
-
+    <link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="top-bar">
+    <div class="top-bar BackGroundBlue">
         <div class="row">
             <div class="top-bar-left">
-                <ul class="dropdown menu" data-dropdown-menu>
-                    <li class="menu-text"><a href="@Url.Action("Index", "Home")"></a>TuPrecio.com</li>
-                    <li><a href="@Url.Action("About", "Home")">About</a></li>
+                <ul class="dropdown menu BackGroundBlue" data-dropdown-menu>
+                    <li class="menu-text BackGroundBlue"><a href="@Url.Action("Index", "Home")" class="LogoLetters">TuPrecio.com</a></li>
+                    @*<li><a href="@Url.Action("About", "Home")">Quienes Somos</a></li>*@
                 </ul>
             </div>
             <div class="top-bar-right">
                 <form action="@Url.Action("Index", "Search")">
                     <ul class="menu">
-                        <li><input type="search" name="criteria" placeholder="Search"></li>
-                        <li><button type="submit" class="button">Search</button></li>
+                        <li class="BackGroundBlue"><input type="search" name="criteria" placeholder="Buscar"></li>
+                        <li class="BackGroundBlue"><button type="submit" class="button">Search</button></li>
                     </ul>
                 </form>
             </div>
@@ -35,7 +36,7 @@
         <hr>
         <ul class="menu">
             <li>TuPrecio.com</li>
-            <li><a href="@Url.Action("About", "Home")">About</a></li>
+            @*<li><a href="@Url.Action("About", "Home")">About</a></li>*@
             <li class="float-right">Copyright @DateTime.Now.Year</li>
         </ul>
     </div>
