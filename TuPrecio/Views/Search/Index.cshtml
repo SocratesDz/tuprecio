@@ -21,7 +21,7 @@ else
             @foreach (var a in Model)
             {
                 <tr>
-                    <td>@a.Name</td>
+                    <td><a href="@Url.Action("Index", "Article", new { id = a.Id })">@a.Name</a></td>
                     <td>@a.Price</td>
                 </tr>
             }
