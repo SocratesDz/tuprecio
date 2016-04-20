@@ -7,12 +7,17 @@ namespace TuPrecio.Models
 {
     public class Location
     {
+        public Location()
+        {
+            Articles = new List<Article>();
+        }
+
         public int Id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
         public string Latitude { get; set; }
         public string Longitude { get; set; }
 
-        public virtual List<Article> Articles { get; set; }
+        public virtual ICollection<Article> Articles { get; set; }
     }
 }

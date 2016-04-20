@@ -1,12 +1,110 @@
 ﻿@model TuPrecio.Models.Article
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = Model.Name;
+    var mapsKey = System.Configuration.ConfigurationManager.AppSettings["GoogleMapsAPIKey"];
 }
 
 <div class="row">
-    <div class="column medium-3">
-        <img src="" />
+    <div class="column medium-4">
+        <img src="http://placehold.it/650x350" />
+    </div>
+    <div class="column medium-8">
+        <div class="row">
+            <div class="column medium-5 medium-text-left">
+                <h2>@Model.Name</h2>
+            </div>
+            <div class="column medium-3 medium-text-right">
+                <h2>@Model.Price</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                @if (Model.Location != null)
+                {
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Lugar</th>
+                                <th>Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var loc in Model.Location)
+                            {
+                                var locationMatch = loc.Articles.Where(a => a.Id == Model.Id).FirstOrDefault();
+                                <tr data-location-id="@loc.Id" data-location-latitude="@loc.Latitude" data-location-longitude="@loc.Longitude">
+                                    <td>@loc.Name</td>
+                                    <td>@String.Format("{0} {1}", locationMatch == null ? 0M : locationMatch.Price, Model.Unit.Name)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+            </div>
+        </div>
     </div>
 </div>
+<div class="row"  style="margin-top: 15px;">
+    <div class="medium-10 columns medium-centered" style="margin: 0 auto;">
+        <div id="map_canvas" style="width: 100%; height: 400px;"></div>
+    </div>
+</div>
+
+@section scripts {
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=@(mapsKey)"></script>
+    <script>
+        var map;
+        function initMap() {
+            var countryCenter = { lat: 18.9157721, lng: -70.1398045 };
+            var mapDiv = document.getElementById('map_canvas');
+            map = new google.maps.Map(mapDiv, { center: countryCenter, zoom: 8 });
+            var geocoder = new google.maps.Geocoder;
+
+            for(var i of $("[data-location-id]")) {
+
+            }
+
+            var marker = new google.maps.Marker({
+                position: countryCenter,
+                map: map,
+                title: "Selecciona la ubicación",
+                animation: google.maps.Animation.DROP,
+                draggable: true
+            });
+
+            map.addListener("click", function (e) {
+                marker.setPosition(e.latLng);
+                var pos = marker.getPosition();
+                setPositionInForm(pos);
+            });
+
+            marker.addListener('dragend', function (e) {
+                setPositionInForm(e.latLng);
+            });
+
+            function setPositionInForm(pos) {
+                geocoder.geocode({ 'location': pos }, function (results, status) {
+                    var address = "";
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        if (results[1]) {
+                            address = results[1].formatted_address;
+                        }
+                        else {
+                            address = "";
+                        }
+                    }
+                    else {
+                        console.log(status);
+                    }
+                    $("#Address").val(address);
+                });
+
+                $("#Longitude").val(pos.lng());
+                $("#Latitude").val(pos.lat());
+            }
+        }
+        google.maps.event.addDomListener(window, "load", initMap);
+    </script>
+}
 

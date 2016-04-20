@@ -10,7 +10,7 @@
 }
 else
 {
-    <table>
+    <table id="search-results">
         <thead>
             <tr>
                 <th>Nombre</th>
@@ -27,4 +27,25 @@ else
             }
         </tbody>
     </table>
+
+    <div class="row">
+        <div class="column medium-text-center" style="margin-top: 20px;">
+            <b>¿Conoces algún producto que deba estar aquí? <a href="@Url.Action("Create", "Article")">¡Agrégalo aquí!</a></b>
+        </div>
+    </div>
+}
+
+@section scripts {
+    @Styles.Render("~/Content/DataTables/css/jquery.dataTables.min.css")
+    @Scripts.Render("~/Scripts/DataTables/jquery.dataTables.min.js")
+
+    <script>
+        $(function () {
+            $("#search-results").DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+                }
+            });
+        });
+    </script>
 }

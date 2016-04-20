@@ -6,7 +6,6 @@
     <title>@ViewBag.Title | TuPrecio.com</title>
     @Styles.Render("~/Content/css/foundation")
     @Scripts.Render("~/bundles/modernizr")
-    <link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" />
     <link href="~/Content/Site.css" rel="stylesheet" />
 </head>
 <body>
@@ -22,7 +21,7 @@
                 <form action="@Url.Action("Index", "Search")">
                     <ul class="menu">
                         <li class="BackGroundBlue"><input type="search" name="criteria" placeholder="Buscar"></li>
-                        <li class="BackGroundBlue"><button type="submit" class="button">Search</button></li>
+                        <li class="BackGroundBlue"><button type="submit" class="button secondary">Buscar</button></li>
                     </ul>
                 </form>
             </div>

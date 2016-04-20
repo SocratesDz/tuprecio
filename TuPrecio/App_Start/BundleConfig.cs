@@ -28,10 +28,12 @@ namespace TuPrecio
                       "~/Content/site.css"));
 
             bundles.Add(new StyleBundle("~/Content/css/foundation").Include(
-                    "~/Content/foundation.min.css"));
+                    "~/Content/foundation.min.css",
+                    "~/Content/motion-ui.css"));
 
             bundles.Add(new ScriptBundle("~/Scripts/foundation").Include(
-                    "~/Scripts/foundation.js"));
+                    "~/Scripts/foundation.js",
+                    "~/Scripts/plugins/foundation.util.motion.js"));
         }
     }
 }

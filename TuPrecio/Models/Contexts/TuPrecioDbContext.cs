@@ -19,5 +19,18 @@ namespace TuPrecio.Models.Contexts
         public DbSet<Location> Locations { get; set; }
         public DbSet<UnitType> UnitTypes { get; set; }
         public DbSet<Currency> Currencies { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Article>()
+                .HasMany(a => a.Location)
+                .WithMany(l => l.Articles)
+                .Map(m =>
+                {
+                    m.ToTable("LocationArticles");
+                    m.MapLeftKey("Location_Id");
+                    m.MapRightKey("Article_Id");
+                });
+        }
     }
 }
